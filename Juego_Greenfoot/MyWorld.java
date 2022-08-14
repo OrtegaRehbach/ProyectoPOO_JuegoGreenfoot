@@ -27,7 +27,23 @@ public class MyWorld extends World
     private void prepare()
     {
         Player player = new Player();
-        addObject(player,88,171);
+        addObject(player,65,175);
         player.setLocation(65,175);
+    }
+    
+    public void act() {
+        despawnObstacles();
+    }
+    
+    private void despawnObstacles() {
+        java.util.List<Obstacle> obstacleList = getObjects(Obstacle.class);
+        if (!obstacleList.isEmpty()) {
+            for (Obstacle o : obstacleList) {
+                if(o.isAtEdge()) {
+                    removeObject(o);
+                }
+            }
+        }
+        
     }
 }
